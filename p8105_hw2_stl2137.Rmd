@@ -52,3 +52,10 @@ precip_17_18 <-
   janitor::clean_names()
 ```
 
+## Problem 2
+```{r}
+pols_month_df <- 
+  read_csv("./data_hw_2/fivethirtyeight_datasets/pols-month.csv") %>% 
+  separate(mon, c("year", "month", "day"))
+```
+
