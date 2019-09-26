@@ -13,5 +13,13 @@ library(readxl)
 
 ## Problem 1
 ```{r}
-trash_wheel_df <- read_excel("./data_hw_2/HealthyHarborWaterWheelTotals2018-7-28.xlsx")
+trash_wheel_df <- 
+  read_excel("./data_hw_2/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel") %>% 
+  janitor::clean_names() %>% 
+  select(-x15) %>% 
+  drop_na(dumpster) %>% 
+  mutate(
+    sports_balls = round(pull(trash_wheel_df, sports_balls), 0) %>% 
+      as.integer(pull(trash_wheel_df, sports_balls))
+  )
 ```
