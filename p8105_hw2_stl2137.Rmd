@@ -49,7 +49,10 @@ precip_2017 <-
 ```{r}
 precip_17_18 <- 
   bind_rows(precip_2017, precip_2018) %>% 
-  janitor::clean_names()
+  janitor::clean_names() %>% 
+  mutate(
+    month = month.name[month]
+  )
 ```
 
 ## Problem 2
