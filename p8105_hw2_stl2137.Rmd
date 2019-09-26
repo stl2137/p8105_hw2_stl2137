@@ -12,6 +12,7 @@ library(readxl)
 ```
 
 ## Problem 1
+### Creating Dataframe for Mr. Trash Wheel Data
 ```{r}
 trash_wheel_df <- 
   read_excel("./data_hw_2/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel") %>% 
@@ -23,3 +24,14 @@ trash_wheel_df <-
       as.integer(pull(trash_wheel_df, sports_balls))
   )
 ```
+
+### Creating Dataframe for 2018 Precipitation
+```{r}
+precip_2018 <- 
+  read_excel("./data_hw_2/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "2018 Precipitation", range = "A2:B14") %>% 
+  drop_na(Total) %>% 
+  mutate(
+    year = 2017
+  )
+```
+
