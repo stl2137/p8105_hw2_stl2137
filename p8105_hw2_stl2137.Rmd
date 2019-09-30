@@ -56,9 +56,26 @@ precip_17_18 <-
 ```
 
 ## Problem 2
+### Tidying the dates 
+### Need to figure out how to combine mutates
 ```{r}
 pols_month_df <- 
   read_csv("./data_hw_2/fivethirtyeight_datasets/pols-month.csv") %>% 
-  separate(mon, c("year", "month", "day"))
+  separate(mon, c("year", "month", "day")) %>%
+  mutate(
+    month = as.numeric(pull(., month)),
+    month = month.name[month]
+    )
+```
+
+### Create president variable
+```{r}
+pols_month_df <- 
+  pivot_longer(
+    pols_month_df,
+    cols = c("prez_gop", "prez_dem"),
+    names_to = "president",
+    names_prefix = "prez_"
+  )
 ```
 
