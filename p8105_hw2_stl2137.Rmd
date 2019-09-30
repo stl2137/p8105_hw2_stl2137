@@ -76,6 +76,16 @@ pols_month_df <-
     cols = c("prez_gop", "prez_dem"),
     names_to = "president",
     names_prefix = "prez_"
-  )
+  ) %>% 
+  mutate(value = na_if(value, 0)) %>% 
+  drop_na() %>% 
+  select(-c(value, day))
+```
+
+### Clean the data in snp 
+```{r}
+snp_df <- 
+  read_csv("./data_hw_2/fivethirtyeight_datasets/snp.csv") %>% 
+  separate(date, c("month", "day", "year")) 
 ```
 
