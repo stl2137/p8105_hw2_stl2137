@@ -86,6 +86,13 @@ pols_month_df <-
 ```{r}
 snp_df <- 
   read_csv("./data_hw_2/fivethirtyeight_datasets/snp.csv") %>% 
-  separate(date, c("month", "day", "year")) 
+  separate(date, c("month", "day", "year")) %>% 
+  mutate(
+    month = as.numeric(pull(., month)),
+    month = month.name[month]
+    ) %>% 
+  select(year, month, close, -day) %>% 
+  arrange(year)
+  
 ```
 
