@@ -57,7 +57,6 @@ precip_17_18 <-
 
 ## Problem 2
 ### Tidying the dates 
-### Need to figure out how to combine mutates
 ```{r}
 pols_month_df <- 
   read_csv("./data_hw_2/fivethirtyeight_datasets/pols-month.csv") %>% 
@@ -82,7 +81,7 @@ pols_month_df <-
   select(-c(value, day))
 ```
 
-### Clean the data in snp 
+### Cleaning snp.csv 
 ```{r}
 snp_df <- 
   read_csv("./data_hw_2/fivethirtyeight_datasets/snp.csv") %>% 
@@ -93,6 +92,21 @@ snp_df <-
     ) %>% 
   select(year, month, close, -day) %>% 
   arrange(year)
-  
+```
+
+### Cleaning Unemployment.csv
+```{r}
+unemploy_df <- read_csv("./data_hw_2/fivethirtyeight_datasets/unemployment.csv") 
+
+unemploy_df <-
+  pivot_longer(
+    unemploy_df,
+    cols = Jan:Dec,
+    names_to = "month",
+  ) %>% 
+  mutate(
+    month = match(month, month.abb),
+    month = month.name[month]
+  )
 ```
 
