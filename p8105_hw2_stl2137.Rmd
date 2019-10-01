@@ -115,7 +115,7 @@ unemploy_df <-
 ```
 
 
-### Joining snp_df to pol_month_df
+### Joining snp_df with pol_month_df and join_snp_pols_df with unemploy_df
 ```{r}
 #Is this the way to do it?
 join_snp_pols_df <- 
@@ -125,3 +125,17 @@ join_unemploy_df <-
   left_join(join_snp_pols_df, unemploy_df, by = c("year", "month"))
 ```
 
+
+## Problem 3
+```{r}
+baby_names_df <- 
+  read_csv("./data_hw_2/Popular_Baby_Names.csv") %>% 
+  janitor::clean_names() %>% 
+  distinct()
+
+```
+
+Issues with Baby Names Dataset:
+* Year is in descending order
+* Ethnicity categories are repeated with different names
+* Names are both in all caps and in proper English grammer (first letter is uppercase)
