@@ -91,7 +91,7 @@ snp_df <-
     month = month.name[month]
     ) %>% 
   select(year, month, close, -day) %>% 
-  arrange(year)
+  arrange(year, (match(month, month.name)))
 ```
 
 ### Cleaning Unemployment.csv
@@ -108,5 +108,9 @@ unemploy_df <-
     month = match(month, month.abb),
     month = month.name[month]
   )
+```
+
+```{r}
+
 ```
 
