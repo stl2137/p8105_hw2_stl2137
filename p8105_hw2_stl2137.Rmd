@@ -122,6 +122,6 @@ join_snp_pols_df <-
   left_join(pols_month_df, snp_df, by = c("year", "month"))
 
 join_unemploy_df <- 
-  left_join(unemploy_df, join_snp_pols_df, by = c("year", "month"))
+  left_join(join_snp_pols_df, unemploy_df, by = c("year", "month"))
 ```
 
