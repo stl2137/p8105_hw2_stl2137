@@ -96,7 +96,11 @@ snp_df <-
 
 ### Cleaning Unemployment.csv
 ```{r}
-unemploy_df <- read_csv("./data_hw_2/fivethirtyeight_datasets/unemployment.csv") 
+unemploy_df <- read_csv("./data_hw_2/fivethirtyeight_datasets/unemployment.csv") %>% 
+  rename(year = Year) %>% 
+  mutate(
+    year = as.character(year)
+  )
 
 unemploy_df <-
   pivot_longer(
@@ -106,11 +110,18 @@ unemploy_df <-
   ) %>% 
   mutate(
     month = match(month, month.abb),
-    month = month.name[month]
-  )
+    month = month.name[month],
+  ) 
 ```
 
-```{r}
 
+### Joining snp_df to pol_month_df
+```{r}
+#Is this the way to do it?
+join_snp_pols_df <- 
+  left_join(pols_month_df, snp_df, by = c("year", "month"))
+
+join_unemploy_df <- 
+  left_join(unemploy_df, join_snp_pols_df, by = c("year", "month"))
 ```
 
