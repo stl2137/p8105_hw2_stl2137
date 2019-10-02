@@ -140,9 +140,15 @@ baby_names_df <-
   janitor::clean_names() %>% 
   distinct() %>% 
   arrange(year_of_birth) %>% 
+  mutate_all(tolower) %>% 
   mutate(
-    
+    ethnicity = recode(ethnicity,
+      "asian and paci" = "asian and pacific islander",
+      "black non hisp" = "black non hispanic",
+      "white non hisp" = "white non hispanic"
+    )
   )
+  
   
 
 ```
