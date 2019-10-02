@@ -174,3 +174,13 @@ male_names_tbl <-
   kable()
 ```
 
+
+for male, white non-hispanic children born in 2016, produce a scatter plot showing the number of children with a name (y axis) against the rank in popularity of that name (x axis)
+```{r}
+white_hisp_male_df <- 
+  baby_names_df %>% 
+  filter(gender == "male", ethnicity == "white non hispanic", year_of_birth == "2016")
+
+
+```
+
