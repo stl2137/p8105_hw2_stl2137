@@ -14,10 +14,12 @@ library(readxl)
 ## Problem 1
 ### Creating Dataframe for Mr. Trash Wheel Data
 ```{r}
+### look over, imported updated data, make sure read in data is the correct sheet
+
 trash_wheel_df <- 
-  read_excel("./data_hw_2/HealthyHarborWaterWheelTotals2018-7-28.xlsx", sheet = "Mr. Trash Wheel") %>% 
+  read_excel("./data_hw_2/Trash-Wheel-Collection-Totals-8-6-19.xlsx", sheet = "Mr. Trash Wheel") %>% 
   janitor::clean_names() %>% 
-  select(-x15) %>% 
+  select(-c(x15, x16, x17)) %>% 
   drop_na(dumpster) %>% 
   mutate(
     sports_balls = round(pull(trash_wheel_df, sports_balls), 0) %>% 
@@ -127,15 +129,20 @@ join_unemploy_df <-
 
 
 ## Problem 3
-```{r}
-baby_names_df <- 
-  read_csv("./data_hw_2/Popular_Baby_Names.csv") %>% 
-  janitor::clean_names() %>% 
-  distinct()
-
-```
 
 Issues with Baby Names Dataset:
 * Year is in descending order
 * Ethnicity categories are repeated with different names
 * Names are both in all caps and in proper English grammer (first letter is uppercase)
+```{r}
+baby_names_df <- 
+  read_csv("./data_hw_2/Popular_Baby_Names.csv") %>% 
+  janitor::clean_names() %>% 
+  distinct() %>% 
+  arrange(year_of_birth) %>% 
+  mutate(
+    
+  )
+  
+
+```
