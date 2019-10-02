@@ -179,8 +179,13 @@ for male, white non-hispanic children born in 2016, produce a scatter plot showi
 ```{r}
 white_hisp_male_df <- 
   baby_names_df %>% 
-  filter(gender == "male", ethnicity == "white non hispanic", year_of_birth == "2016")
+  filter(gender == "male", ethnicity == "white non hispanic", year_of_birth == "2016") %>% 
+  mutate(
+    rank = as.numeric(rank),
+    count = as.numeric(count)
+  ) 
 
-
+ggplot(white_hisp_male_df, aes(x = rank, y = count)) +
+  geom_point()
 ```
 
