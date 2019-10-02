@@ -171,9 +171,6 @@ male_names_tbl <-
   baby_names_df %>% 
   filter(gender == "male", rank == "1") %>% 
   select(year_of_birth, ethnicity, childs_first_name, rank) %>% 
-  pivot_wider(
-    baby_names_df
-  )
   kable()
 ```
 
