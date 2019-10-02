@@ -9,6 +9,7 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
+library(knitr)
 ```
 
 ## Problem 1
@@ -145,10 +146,34 @@ baby_names_df <-
     ethnicity = recode(ethnicity,
       "asian and paci" = "asian and pacific islander",
       "black non hisp" = "black non hispanic",
-      "white non hisp" = "white non hispanic"
-    )
+      "white non hisp" = "white non hispanic")
   )
-  
-  
-
 ```
+
+Produce a well-structured, reader-friendly table showing the rank in popularity of the name “Olivia” as a female baby name over time; this should have rows for ethnicities and columns for year. 
+
+
+```{r results = 'asis'}
+Oliva_tbl <-
+  baby_names_df %>% 
+  select(year_of_birth, ethnicity, childs_first_name, rank) %>% 
+  filter(childs_first_name == "olivia") %>% 
+  pivot_wider(
+    names_from = year_of_birth, 
+    values_from = rank,
+  ) %>%
+  kable()
+```
+
+Produce a similar table showing the most popular name among male children over time.
+```{r}
+male_names_tbl <-
+  baby_names_df %>% 
+  filter(gender == "male", rank == "1") %>% 
+  select(year_of_birth, ethnicity, childs_first_name, rank) %>% 
+  pivot_wider(
+    baby_names_df
+  )
+  kable()
+```
+
