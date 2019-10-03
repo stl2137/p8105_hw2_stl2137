@@ -87,7 +87,7 @@ pols_month_df <-
   ) %>% 
   mutate(value = na_if(value, 0)) %>% 
   drop_na() %>% 
-  select(-c(value, day))
+  select(-value, -day)
 ```
 
 ### Cleaning snp.csv 
@@ -134,6 +134,11 @@ join_unemploy_df <-
 ```
 Write a short paragraph about these datasets. Explain briefly what each dataset contained, and describe the resulting dataset (e.g. give the dimension, range of years, and names of key variables).
 
+The 'r pols_month_df' refers to the dataset containing information regarding to the number of national politicians who are democratic or republican at a given time. There are 'r nrow(pols_month_df) observations and 'r ncol(pols_month_df) variables such as year, month, president (whether the president was a republican or democrat), sen_gop or sen_dem (how many senators were republican or democrat), rep_gop or rep_dem (how many house representations were republican or democrat), and gov_gop or gov_dem (how many governers were republican or democrat). This dataset's year variable ranges from 1947 to 2015. 
+
+The 'r snp_df' refers to the dataset containing information related to the S&P market index, which is used as a representative measure of the stock market. There are 'r nrow(snp_df)' obserations and 'r ncol(snp_df)' variables such as year, month, and close (the closing values of the S&P stock index on the associated date). This dataset's year variable ranges from 1950 to 2015.
+
+The 'r unemploy_df' refers to the dataset containing infomration related to the percentage of unemployment of the associated year. There are 'r nrow(unemploy_df)' observations and 'r ncol(unemploy_df)' variables such as year, month, and value (percentage of unemployment). This dataset's year variable ranges from 1948 to 2015. 
 
 ## Problem 3
 ### Cleaning the Popular_Baby_Names.csv 
